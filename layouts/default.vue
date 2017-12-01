@@ -3,6 +3,7 @@
     <v-navigation-drawer
       :mini-variant="miniVariant"
       :clipped="clipped"
+      v-model="isMenuOpen"
       fixed
       app
     >
@@ -27,8 +28,16 @@
       <v-btn
         icon
         @click.stop="miniVariant = !miniVariant"
+        class="hidden-md-and-down"
       >
         <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
+      </v-btn>
+      <v-btn
+        icon
+        @click.stop="miniVariant = false,isMenuOpen=!isMenuOpen"
+        class="hidden-lg-and-up"
+      >
+        <v-icon>menu</v-icon>
       </v-btn>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
@@ -51,8 +60,10 @@
         clipped: false,
         items: [
           {icon: 'rss_feed', title: '新着投稿', to: '/'},
+          {icon: 'info', title: 'About', to: '/about'}
         ],
         miniVariant: true,
+        isMenuOpen: null,
         title: 'Qiita Feeder'
       }
     }

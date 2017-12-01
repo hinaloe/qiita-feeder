@@ -109,6 +109,9 @@
 .MdContent >>> ul {
     margin-left: 1em;
 }
+.MdContent >>> img {
+    max-width: 100%;
+}
 
 .MdContent >>> .code-frame {
     margin: 1.5em -16px;
