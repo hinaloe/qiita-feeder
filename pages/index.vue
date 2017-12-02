@@ -32,12 +32,13 @@
 
 <script>
   import AppPost from '../components/Post'
+  import { getPosts } from '~/cache/posts'
 
   export default {
     async asyncData ({app}) {
       try {
-        const posts = await app.$axios.get('/api/v2/items')
-        return {posts: posts.data}
+        const posts = process.server ? await getPosts(app) : (await app.$axios.get('/api/v2/items')).data
+        return {posts}
       } catch (e) {
         return {posts: [], page: 0}
       }
@@ -77,6 +78,11 @@
       showSnack (message) {
         this.snack.msg = message
         this.snack.show = true
+      }
+    },
+    mounted () {
+      if (this.page === 0) {
+        this.onNextClick()
       }
     },
     components: {

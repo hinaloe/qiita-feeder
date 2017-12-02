@@ -113,6 +113,9 @@
 .MdContent >>> ul {
     margin-left: 1em;
 }
+.MdContent >>> ol {
+    padding-left: 40px;
+}
 .MdContent >>> img {
     max-width: 100%;
 }
