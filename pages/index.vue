@@ -3,7 +3,9 @@
         <v-flex xs12 sm10 md10>
             <v-card class="info">
                 <v-card-text>
-                    <p>未ログイン時のレートリミットはIPアドレス毎に60回/時です</p>
+                    <p><v-icon>info</v-icon> 未ログイン時のレートリミットはIPアドレス毎に60回/時です</p>
+                    <!--<p v-if="error && error.response && error.response.status">{{error.response.status}}</p>-->
+                    <!--<p v-if="error && error.response && error.response.data">{{error.response.data}}</p>-->
                 </v-card-text>
             </v-card>
         </v-flex>
@@ -17,10 +19,14 @@
                         <v-icon>cached</v-icon>
                         もっと読む
                     </p>
-                    <p v-else>読み込み中……</p>
+                    <p v-else><v-progress-circular indeterminate :size="50" color="primary"/>読み込み中……</p>
                 </v-card-text>
             </v-card>
         </v-flex>
+        <v-snackbar right v-model="snack.show">
+            {{ snack.msg }}
+            <v-btn flat color="pink" @click.native="snack.show = false">Close</v-btn>
+        </v-snackbar>
     </v-layout>
 </template>
 
@@ -29,13 +35,21 @@
 
   export default {
     async asyncData ({app}) {
-      const posts = await app.$axios.get('/api/v2/items')
-      return {posts: posts.data}
+      try {
+        const posts = await app.$axios.get('/api/v2/items')
+        return {posts: posts.data}
+      } catch (e) {
+        return {posts: [], page: 0}
+      }
     },
     data () {
       return {
         page: 1,
-        loading: false
+        loading: false,
+        snack: {
+          msg: '',
+          show: false
+        }
       }
     },
     methods: {
@@ -43,16 +57,26 @@
         if (this.loading) {
           return
         }
+        if (typeof navigator.onLine !== 'undefined' && navigator.onLine === false) {
+          this.showSnack('オフラインです')
+          return
+        }
         this.loading = true
         try {
-          this.page++
-          const {data} = await this.$axios.get(`/api/v2/items?page=${this.page}`)
+          const page = this.page + 1
+          const {data} = await this.$axios.get(`/api/v2/items?page=${page}`)
           this.posts.push(...data)
+          this.page = page
         } catch (e) {
-          //
+          this.showSnack('読み込みに失敗しました')
+          console.error(e)
         } finally {
           this.loading = false
         }
+      },
+      showSnack (message) {
+        this.snack.msg = message
+        this.snack.show = true
       }
     },
     components: {

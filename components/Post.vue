@@ -1,5 +1,5 @@
 <template>
-    <v-card tag="article">
+    <v-card tag="article" class="article">
         <v-card-title class="headline">{{post.title}}</v-card-title>
         <v-card-text class="d-flex">
             <div class="post-info">
@@ -52,6 +52,10 @@
 </script>
 
 <style scoped>
+.article {
+    word-break: break-all;
+}
+
 .post-info {
     display: flex;
     align-items: center;

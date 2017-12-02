@@ -13,7 +13,8 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Qiitaの新着投稿を眺めるためだけのWebサービス' }
+      { hid: 'description', name: 'description', content: 'Qiitaの新着投稿を眺めるためだけのWebサービス' },
+      { hid: 'theme-color', name: 'theme-color', content: '#03a9f4' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -52,7 +53,8 @@ module.exports = {
   ** Axios module configuration
   */
   axios: {
-    baseURL: 'https://qiita.com'
+    baseURL: 'https://qiita.com',
+    proxyHeaders: false
   },
 
   /*
