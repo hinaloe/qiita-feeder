@@ -81,6 +81,13 @@ module.exports = {
           })
         ]
       }
-    }
+    },
+    vendor: [
+      'axios'
+    ],
+    extractCSS: true
+  },
+  render: {
+    http2: { push: true }
   }
 }
