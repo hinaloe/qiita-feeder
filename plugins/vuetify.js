@@ -8,7 +8,7 @@ Vue.use(Vuetify, {
     accent: colors.lightBlue.accent2,
     secondary: colors.lightBlue.lighten2,
     info: colors.teal.lighten3,
-    warning: colors.amber,
+    warning: colors.amber.darken3,
     error: colors.deepOrange.accent4,
     success: colors.green.accent3
   }
