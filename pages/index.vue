@@ -37,7 +37,7 @@
   export default {
     async asyncData ({app}) {
       try {
-        const posts = process.server ? await getPosts(app) : (await app.$axios.get('/api/v2/items')).data
+        const posts = await (process.server ? getPosts(app) : app.$axios.$get('/api/v2/items'))
         return {posts}
       } catch (e) {
         return {posts: [], page: 0}
