@@ -54,7 +54,8 @@ module.exports = {
   */
   axios: {
     baseURL: 'https://qiita.com',
-    proxyHeaders: false
+    proxyHeaders: false,
+    credentials: false
   },
 
   /*

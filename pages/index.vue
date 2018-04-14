@@ -31,7 +31,7 @@
 </template>
 
 <script>
-  import AppPost from '../components/Post'
+  import AppPost from '~/components/Post'
   import { getPosts } from '~/cache/posts'
 
   export default {
