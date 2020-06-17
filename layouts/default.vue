@@ -47,7 +47,7 @@
         <nuxt />
       </v-container>
     </v-content>
-    <v-footer  app>
+    <v-footer  app class="pa-3">
       <span>&copy; 2017 hinaloe</span>
     </v-footer>
   </v-app>
