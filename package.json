@@ -18,6 +18,7 @@
     "node-fetch": "^2.6.0",
     "nuxt": "^2.12.2",
     "vue-client-only": "^2.0.0",
+    "vue-no-ssr": "^1.1.1",
     "vuetify": "^1.0.14"
   },
   "devDependencies": {
