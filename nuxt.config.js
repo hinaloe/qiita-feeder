@@ -1,7 +1,5 @@
 // const pkg = require('./package')
 
-import nodeExternals from 'webpack-node-externals'
-
 export default {
   mode: 'universal',
 
@@ -80,6 +78,7 @@ export default {
         })
       }
       if (ctx.isServer) {
+        const nodeExternals = require('webpack-node-externals')
         config.externals = [
           nodeExternals({
             whitelist: [/^vuetify/],
