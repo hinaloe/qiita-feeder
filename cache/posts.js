@@ -16,7 +16,7 @@ let loading
  * @param {Vue} app
  * @return {Promise<*[]>}
  */
-export async function getPosts (app) {
+export async function getPosts(app) {
   try {
     // eslint-disable-next-line no-unmodified-loop-condition
     while (loading) {
@@ -28,8 +28,8 @@ export async function getPosts (app) {
     } else {
       // console.log('fetch')
       try {
-        loading = true;
-        ({data} = await app.$axios.get('/api/v2/items'))
+        loading = true
+        ;({ data } = await app.$axios.get('/api/v2/items'))
         key = makeKey()
       } finally {
         loading = false
@@ -37,17 +37,17 @@ export async function getPosts (app) {
       return data
     }
   } catch (e) {
-
+    //
   }
 }
 
 /**
  * @return {number}
  */
-function makeKey () {
+function makeKey() {
   return ~~(Date.now() / (1000 * 60 * 3))
 }
 
-function sleep (ms) {
-  return new Promise(resolve => setTimeout(resolve, ms))
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }
