@@ -81,7 +81,7 @@ export default {
         const nodeExternals = require('webpack-node-externals')
         config.externals = [
           nodeExternals({
-            whitelist: [/^vuetify/],
+            allowlist: [/^vuetify/],
           }),
         ]
       }
