@@ -10,8 +10,6 @@ module.exports = {
     'plugin:nuxt/recommended',
     'plugin:prettier/recommended',
   ],
-  // required to lint *.vue files
-  plugins: ['vue'],
   // add your custom rules here
   rules: {
     semi: [2, 'never'],
