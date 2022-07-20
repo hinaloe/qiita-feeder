@@ -49,6 +49,7 @@ export default {
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
   ],
+  buildModules: ['@nuxtjs/eslint-module'],
 
   /*
    ** Axios module configuration
@@ -67,15 +68,6 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {
-      // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/,
-        })
-      }
       if (ctx.isServer) {
         const nodeExternals = require('webpack-node-externals')
         config.externals = [
